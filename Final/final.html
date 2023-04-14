@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>final</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="final_files/libs/clipboard/clipboard.min.js"></script>
+<script src="final_files/libs/quarto-html/quarto.js"></script>
+<script src="final_files/libs/quarto-html/popper.min.js"></script>
+<script src="final_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="final_files/libs/quarto-html/anchor.min.js"></script>
+<link href="final_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="final_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="final_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="final_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="final_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<p>STAT 3255 Final – Affordable Housing vs Crime in Connecticut Colin Sullivan</p>
+<hr>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<ul>
+<li><p>Affordable housing has become a hot topic discussion across CT</p></li>
+<li><p>Privatized housing continues to price out even the middle class</p></li>
+<li><p>Government officials have turned to exploring affordable housing</p></li>
+<li><p>Often these discussions lead to negative public reaction</p></li>
+<li><p>Bad faith arguments about effect on town safety</p></li>
+<li><p>Some nationwide research but very little at CT state level</p></li>
+</ul>
+</section>
+<section id="specific-research-aims" class="level2">
+<h2 class="anchored" data-anchor-id="specific-research-aims">Specific Research Aims</h2>
+<ul>
+<li>I set out with several goals in mind
+<ul>
+<li>Clean and merge data effectively</li>
+<li>Create interesting and informative graphics and charts about the issue</li>
+<li>Perform hypothesis tests and linear regression on the data to draw conclusions and forecast future information</li>
+</ul></li>
+<li>Hypothesis:
+<ul>
+<li>The idea that affordable housing leads to violent crime is baseless and unfounded and it can be statistically proven that an increase in housing does not correlate strongly with an increase in violent crime in Connecticut towns</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
+<p>All data was found on the <a href="CTData.org">CT Data website</a> - The primary dataset was “Affordable Housing by Town, 2011-2022” - 2000+ rows, one for each town for each year - Columns such as ‘Census Units’ and ‘Total Assisted Units’ - Formatted fairly intuitively</p>
+<ul>
+<li>Separate datasets for crime for each year, titled “Uniform Crime Reporting System Arrests in (year)”
+<ul>
+<li>One row for each crime for each demographic (gender, age range, ethnicity)</li>
+<li>Columns are CT towns, and number of crimes in each town under category and demographic makes up the row entries</li>
+<li>Only had 2011-2017 available</li>
+<li>Very ugly and useless formatting</li>
+</ul></li>
+</ul>
+</section>
+<section id="exploratory-data-and-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-and-cleaning">Exploratory Data and Cleaning</h2>
+<p>Initial looks at the data:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'Affordable_Housing_by_Town_2011-2022.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.replace(<span class="st">' '</span>, <span class="st">'_'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Year  Town_Code         Town  2010_Census_Units  Government_Assisted  \
+0  2020          1      Andover               1317                 18.0   
+1  2020          2      Ansonia               8148                349.0   
+2  2020          3      Ashford               1903                 32.0   
+3  2020          4         Avon               7389                244.0   
+4  2020          5  Barkhamsted               1589                  0.0   
+
+   Tenant_Rental_Assistance  _Single_Family_CHFA/_USDA_Mortgages  \
+0                         1                                   32   
+1                       764                                  147   
+2                         0                                   36   
+3                        16                                   44   
+4                         6                                   23   
+
+   Deed_Restricted_Units  Total_Assisted_Units  Percent_Affordable  
+0                      0                    51                3.87  
+1                      0                  1260               15.46  
+2                      0                    68                3.57  
+3                      0                   304                4.11  
+4                      0                    29                1.83  </code></pre>
+</div>
+</div>
+<ul>
+<li>Not bad formatting</li>
+<li>Some missing data to be cleaned</li>
+</ul>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'Uniform_Crime_Reporting_System_Arrests_2016.csv'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.replace(<span class="st">' '</span>, <span class="st">'_'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       stat_key  stat_index  Connecticut  Andover  Ansonia  Ashford  Avon  \
+0    Murder &lt;10           1            0        0        0        0     0   
+1  Murder 10-12           2            0        0        0        0     0   
+2  Murder 13-14           3            0        0        0        0     0   
+3     Murder 15           4            0        0        0        0     0   
+4     Murder 16           5            3        0        0        0     0   
+
+   Barkhamsted  Beacon_Falls  Berlin  ...  New_Haven_1  New_London_1  \
+0            0             0       0  ...            0             0   
+1            0             0       0  ...            0             0   
+2            0             0       0  ...            0             0   
+3            0             0       0  ...            0             0   
+4            0             0       0  ...            2             0   
+
+   Tolland_1  Windham_1  New_York  Urban  NonUrban  CSP_Total  NIBRS  Summary  
+0          0          0         0      0         0          0      0        0  
+1          0          0         0      0         0          0      0        0  
+2          0          0         0      0         0          0      0        0  
+3          0          0         0      0         0          0      0        0  
+4          0          0         0      3         0          0      2        1  
+
+[5 rows x 206 columns]</code></pre>
+</div>
+</div>
+<ul>
+<li>Horrible formatting</li>
+<li>Extensive cleaning and shaping of data needed</li>
+</ul>
+<p>Using a separate python script to clean and warp data, left with result:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_2016 <span class="op">=</span> pd.read_csv(<span class="st">'2016_crime.csv'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_2016.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          town  AgAsslt  AllOthr   Arson   Burgl  Curfew     DUI   Disord  \
+0   stat_index   1266.0   7153.0  2388.0  1547.0  7434.0  6032.0   6593.0   
+1  Connecticut   2513.0  28377.0    75.0  2035.0     3.0  8333.0  10589.0   
+2      Andover      0.0      3.0     0.0     0.0     0.0     7.0      4.0   
+3      Ansonia      7.0    336.0     0.0    13.0     0.0    24.0    103.0   
+4      Ashford      1.0      2.0     0.0     1.0     0.0     6.0      6.0   
+
+   DrugTot  Embezzl  ...  Robbery  Runaway  SexOff  SmAsslt  StlProp  Vagrncy  \
+0   5191.0   3509.0  ...    986.0   7714.0  4911.0   2668.0   3789.0   6873.0   
+1   9267.0    147.0  ...   1091.0      6.0   400.0  18839.0    696.0     24.0   
+2      2.0      0.0  ...      0.0      0.0     0.0      6.0      0.0      0.0   
+3     41.0      1.0  ...      4.0      0.0     1.0    166.0      0.0      0.0   
+4      8.0      0.0  ...      0.0      0.0     1.0      7.0      0.0      0.0   
+
+   Vandal  Weapons  violent_crime  non_violent_crime  
+0  4070.0   4350.0         8855.0           108760.0  
+1  2219.0   1266.0        19498.0            99214.0  
+2     1.0      0.0            6.0               27.0  
+3     8.0     18.0          168.0              808.0  
+4     2.0      1.0            8.0               42.0  
+
+[5 rows x 31 columns]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_2016.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['town', 'AgAsslt', 'AllOthr', 'Arson', 'Burgl', 'Curfew', 'DUI',
+       'Disord', 'DrugTot', 'Embezzl', 'Family', 'Forgery', 'Fraud', 'Gamble',
+       'Larceny', 'Liquor', 'MVTheft', 'Murder', 'NgMansl', 'Prostit', 'Rape',
+       'Robbery', 'Runaway', 'SexOff', 'SmAsslt', 'StlProp', 'Vagrncy',
+       'Vandal', 'Weapons', 'violent_crime', 'non_violent_crime'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<p>Exploratory charts: <img src="crime-vs-housing-bar.png" class="img-fluid" alt="Figure 1"></p>
+<ul>
+<li><p>Does not seem to be a clear correlation or obvious trend</p></li>
+<li><p>Crimes decreasing slightly, housing increasing slightly</p></li>
+<li><p>Further analysis needed</p></li>
+</ul>
+<p>Just for fun, looking at UConn in the same time frame: <img src="UConn.png" class="img-fluid" alt="Figure 2"></p>
+<p>Chart showing heatmaps of affordable housing through Connecticut over the specified time period: <img src="2011-2017-housing.png" class="img-fluid" alt="Figure 3"></p>
+<ul>
+<li><p>Hard to make any conclusions from this map</p></li>
+<li><p>Housing seems to be concentrated in most populous areas (New Haven, Bridgeport, Hartford)</p></li>
+<li><p>Different type of chart needed to see housing over the time period</p></li>
+</ul>
+<p>Chart showing similar heatmap but for the change over the time period: <img src="housing-change.png" class="img-fluid" alt="Figure 4"></p>
+<ul>
+<li><p>Still no crazy conclusions but nice visualization</p></li>
+<li><p>Big 3 cities all increased (slightly) over the time period</p></li>
+</ul>
+<p>Finally, a chart showing the distribution of violent crimes vs affordable housing by town in Connecticut in 2017 <img src="crimes-vs-housing-2017.png" class="img-fluid" alt="Figure 5"></p>
+<ul>
+<li><p>Once again concentrated in specific areas</p></li>
+<li><p>Affordable housing more available statewide while crime is more concentrated</p></li>
+</ul>
+</section>
+<section id="hypothesis-tests-and-regression" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-tests-and-regression">Hypothesis Tests and Regression</h2>
+<p>The graphs showed nicely the distribution of the statistics across Connecticut, but were unhelpful in addressing the central issue, so we turn to statistical tests</p>
+<p>First, ANOVA test for checking change in average mean number of violent crimes:</p>
+<pre><code>print(stats.f_oneway(towns_2011.non_violent_crime, towns_2012.non_violent_crime, towns_2013.non_violent_crime, towns_2014.non_violent_crime, towns_2015.non_violent_crime, towns_2016.non_violent_crime, towns_2017.non_violent_crime))
+F_onewayResult(statistic=0.2642773310334263, pvalue=0.9534882296481946)</code></pre>
+<p>Similarly, for non-violent crimes:</p>
+<pre><code>print(stats.f_oneway(towns_2011.violent_crime, towns_2012.violent_crime, towns_2013.violent_crime, towns_2014.violent_crime, towns_2015.violent_crime, towns_2016.violent_crime, towns_2017.violent_crime))
+F_onewayResult(statistic=0.33610584222481027, pvalue=0.918006736822041)</code></pre>
+<p>A high p value for both of these tests tells us that we cannot say with any reasonable confidence that the averages differ over this 7 year time period for violent or non-violent crime.</p>
+<p>Checking ANOVA test for differences in means in the total affordable housing averages across the time period:</p>
+<pre><code>print(stats.f_oneway(units_2011, units_2012, units_2013, units_2014, units_2015, units_2016, units_2017))
+F_onewayResult(statistic=0.024439425755962096, pvalue=0.9999375190323628)</code></pre>
+<p>Similarly, high p value does not allow us to reject the null hypothesis with any reasonable confidence.</p>
+<p>To support this idea, I performed the three types of independent t-tests for 2011 and 2017 to see if any differences could be identified.</p>
+<pre><code>print(stats.ttest_ind(units_2011, units_2017, alternative='greater'))
+Ttest_indResult(statistic=-0.20031736649273338, pvalue=0.5793232145405599)
+
+print(stats.ttest_ind(units_2011, units_2017, alternative='less'))
+Ttest_indResult(statistic=-0.20031736649273338, pvalue=0.4206767854594401)
+
+print(stats.ttest_ind(units_2011, units_2017, alternative='two-sided'))
+Ttest_indResult(statistic=-0.20031736649273338, pvalue=0.8413535709188802)</code></pre>
+<p>Of all three tests, the one closest to being able to reject the null hypothesis is the one with the 2011 units less than the 2017 units. However, even in that one we cannot say with greater than ~60% confidence that they differ.</p>
+<p>Since I have the data, just a quick test over the full 12 year period:</p>
+<pre><code>print(stats.ttest_ind(units_2011, units_2022, alternative='less'))
+Ttest_indResult(statistic=-0.3077462095567748, pvalue=0.37923306446599264)</code></pre>
+<p>Once again, similar result. More reasonable p-value than in the other tests, but still too high to statistically prove a difference.</p>
+<p>Finally, a t-test on violent crime over the time period available:</p>
+<pre><code>print(stats.ttest_ind(towns_2011.violent_crime, towns_2017.violent_crime, alternative='greater'))
+Ttest_indResult(statistic=0.8109757074058597, pvalue=0.2089734682354797)</code></pre>
+<p>Lowest p-value yet, but still cannot say with &gt;80% confidence that there is a difference in means in violent crime over the period.</p>
+<p>Moving on to regression, I started with a scatterplot of affordable housing units vs violent crime activity in each town over all the years: <img src="scatter-plot.png" class="img-fluid" alt="figure 6"></p>
+<ul>
+<li><p>Pretty linear looking distribution</p></li>
+<li><p>Some outliers more present to extreme of data</p></li>
+<li><p>In general, appears to have about a 1:10 ratio</p></li>
+</ul>
+<p>To get a better picture of the concentrated data, a scaled scatter plot: <img src="scatter-scaled.png" class="img-fluid" alt="figure 7"></p>
+<ul>
+<li><p>Similar scatter breakdown</p></li>
+<li><p>Very concentrated at minimal/no affordable housing and minimal/no violent crime</p></li>
+</ul>
+<p>One more further scaled image: <img src="scatter-scaled-2.png" class="img-fluid" alt="Figure 8"></p>
+<ul>
+<li><p>Much less linear distribution of data points</p></li>
+<li><p>Still very concentrated in bottom left</p></li>
+</ul>
+<p>Performed linear regression 3 different ways to test for correlation between the variables:</p>
+<pre><code>slope, intercept, r_value, p_value, std_err = stats.linregress(merged.Total_Assisted_Units, merged.violent_crime)
+print("Slope:", slope)
+print("Intercept:", intercept)
+print("R value:", r_value)
+print("P value:", p_value)
+print("Standard error:", std_err)
+
+Slope: 0.1200131200880018
+Intercept: 3.398117855835963
+R value: 0.9111440804120232
+P value: 0.0
+Standard error: 0.0015888984389570934</code></pre>
+<p>Wanted to check the results, as the scipy.stats linregress is not the most precise:</p>
+<pre><code>x = df[['Total_Assisted_Units']].to_numpy()
+y = df.violent_crime.values
+
+
+model = LinearRegression().fit(x, y)
+r_sq = model.score(x, y)
+print(f"coefficient of determination: {r_sq}")
+print(f"intercept: {model.intercept_}")
+print(f"slope: {model.coef_}")
+
+
+x_new = np.array([10, 100, 1000, 10000]).reshape((-1, 1))
+y_pred = model.predict(x_new)
+print(f"predicted response:\n{y_pred}")
+coefficient of determination: 0.8301835352698719
+intercept: 3.398117855835821
+slope: [0.12001312]
+predicted response:
+[   4.59824906   15.39942986  123.41123794 1203.52931874]</code></pre>
+<p>Finally, using statsmodels.api:</p>
+<pre><code>import statsmodels.api as sma
+xmat = sma.add_constant(x)
+mymod = sma.OLS(y, xmat)
+myfit = mymod.fit()
+print(myfit.summary())
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.830
+Model:                            OLS   Adj. R-squared:                  0.830
+Method:                 Least Squares   F-statistic:                     5705.
+Date:                Fri, 14 Apr 2023   Prob (F-statistic):               0.00
+Time:                        00:25:04   Log-Likelihood:                -7387.3
+No. Observations:                1169   AIC:                         1.478e+04
+Df Residuals:                    1167   BIC:                         1.479e+04
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          3.3981      4.224      0.805      0.421      -4.889      11.685
+x1             0.1200      0.002     75.532      0.000       0.117       0.123
+==============================================================================
+Omnibus:                      899.753   Durbin-Watson:                   1.994
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            65118.125
+Skew:                           2.930   Prob(JB):                         0.00
+Kurtosis:                      39.091   Cond. No.                     2.86e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 2.86e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.</code></pre>
+</section>
+<section id="intepretation-of-results" class="level2">
+<h2 class="anchored" data-anchor-id="intepretation-of-results">Intepretation of Results</h2>
+<ul>
+<li><p>Dependent variable is violent crimes</p></li>
+<li><p>Created using OLS with the least squares method</p></li>
+<li><p>1169 observations</p></li>
+<li><p>Model is 1, as this is the number of predicting variables</p></li>
+<li><p>Covariance is nonrobust as it is not calculated in a way that minimizes/eliminates variables</p></li>
+<li><p>R-squared was consistently 0.83 or higher, which means that at least 83% of the increase in violent crime can be explained by an increase in affordable housing in this model</p></li>
+<li><p>The intercept is 3.398, while the slope of the regression line is 0.12</p></li>
+<li><p>There is some uncertainty in what the intercept is, but high certainty of the slope</p></li>
+<li><p>A high omnibus shows a lack of normalcy in the data</p></li>
+<li><p>A high skew shows a lack of symmetry</p></li>
+<li><p>A Durbin-Watson score between 1 and 2 signifies homoscedasticity, which implies a fairly even distribution of errors in the data</p></li>
+<li><p>A high condition number implies multicollinearity</p></li>
+</ul>
+</section>
+<section id="discussion-and-summary" class="level2">
+<h2 class="anchored" data-anchor-id="discussion-and-summary">Discussion and Summary</h2>
+<ul>
+<li><p>Unfortunately, unable to prove my hypothesis with the current data</p>
+<ul>
+<li><p>ANOVA and independent t-tests were not able to show a statistically significant different of means with a high level of confidence over the years in either variable</p></li>
+<li><p>Charts showed a general downward trend in violent crime and a general upward trend in affordable housing</p></li>
+<li><p>Regression and scatter plot showed a fairly strong positive linear correlation between an increase in housing and an increase in violent crime</p></li>
+</ul></li>
+<li><p>However, trends were identified despite not being significant enough for the tests:</p></li>
+</ul>
+<p>Average violent crime per town:</p>
+<pre><code>2011: 139.91228070175438
+2012: 136.52631578947367
+2013: 124.39766081871345
+2014: 112.0
+2015: 102.88304093567251
+2016: 110.35672514619883
+2017: 110.35672514619883</code></pre>
+<p>Average affordable housing per town:</p>
+<pre><code>2011: 943.905325443787
+2012: 954.905325443787
+2013: 991.1479289940828
+2014: 997.9585798816568
+2015: 1033.6969696969697
+2016: 976.3195266272189
+2017: 997.491124260355</code></pre>
+<p>So there ARE trends in the desired direction to support the hypothesis.</p>
+<p>Ultimately, this feels like a chicken and the egg situation and it is difficult to take the found results as quite as meaningful as the opposite, desired ones.</p>
+<ul>
+<li><p>Affordable housing tends to be built in more populated places with more violent crime</p></li>
+<li><p>Violent crime tends to happen more in more populated places with affordable housing</p></li>
+</ul>
+<p>Thus, it is difficult to take this correlation as supporting or refuting any particular claim, unfortunately.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
