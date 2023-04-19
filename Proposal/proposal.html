@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>proposal</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="proposal_files/libs/clipboard/clipboard.min.js"></script>
+<script src="proposal_files/libs/quarto-html/quarto.js"></script>
+<script src="proposal_files/libs/quarto-html/popper.min.js"></script>
+<script src="proposal_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="proposal_files/libs/quarto-html/anchor.min.js"></script>
+<link href="proposal_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="proposal_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="proposal_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="proposal_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="proposal_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<p>STAT 3255 Final Project Proposal – Colin Sullivan</p>
+<hr>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Affordable housing has become a hot-topic discussion point in many towns across Connecticut, including my own hometown of Fairfield. As certain counties continue to price out even people of relatively high net worth, town officials have often turned to proposals of newly built affordable housing complexes. More often than not, the public reaction to said proposals is negative, with citizens citing generally prejudiced opinions about how new affordable housing will affect town safety and income levels. There have been some nationwide research done on the subject, but very little at the level of the state of Connecticut.</p>
+</section>
+<section id="specific-aims" class="level1">
+<h1>Specific Aims</h1>
+<p>I wish to do some research into the effects of affordable housing on Connecticut, at the town, county, and state level, particularly on town income and on town crime. I also want to look at census data to see if there is an effect in population as affordable housing is increased or decreased by town. Specifically, I want to test for correlation between these variables and affordable housing. I feel as though the research is important to help towns make educated decisions not based upon prejudices.</p>
+</section>
+<section id="data-description" class="level1">
+<h1>Data Description</h1>
+<p>There are several different datasets that I will be merging/working with to answer the questions posed. The primary one is the “Affordable Housing by Town 2011-2022” dataset, which contains columns telling the town and various statistics about affordable housing in that town, and there are 2,025 rows of data. I will be combining this data with “Uniform Crime Reporting System Arrests” data. Each arrest dataset is for one calendar year, so I will have to download one for each year. These datasets are ugly, with poorly named and distributed columns, so they will need to be significantly cleaned up. I will also be combining this data with the CT census data for town populations over each year, and finally I will be using a dataset showing income tax per town per year to help determine town income levels. All of these datasets come from CT Data websites.</p>
+</section>
+<section id="research-designmethods" class="level1">
+<h1>Research Design/Methods</h1>
+<p>The data will need significant cleaning and manipulation to get into a useable state, and I hope to combine it all into one dataframe that I can work easily with, although perhaps separated by year. I will modify this based upon need as I progress in the project. I want to focus on helpful visualizations of the data. Unfortunately, the crime data does not come with specific locations for each row, but since they are in towns I want to show town by town visualizations of Connecticut for affordable housing levels, crime levels, income levels, etc. I hope to use hypothesis testing (t-tests and ANOVA) for exploratory data analysis, and I’d like the brunt of my statistical methods to be based upon linear regression to check for correlation strength between the variables and to provide some forecasting predictions.</p>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<p>I hope that my research finds that an increase in affordable housing does not lead to an increase in negative statistics about a town, however I am unsure and there may be some truth to the naysayers’ arguments against the policies. I think regardless of the outcome, the research will add some useful information to the ongoing discussions statewide and hopefully the conclusions of correlation and forecasting can have positive impacts on policy decisions, even if the outcome is not exactly what I expect.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>To summarize, I wish to try and dispel common misconceptions about affordable housing in the state of Connecticut and any negative drawbacks that people tend to assume comes along with said housing. Through my research and data manipulation, I believe this can add positive contextual information to the frequent discussions on the topic.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
